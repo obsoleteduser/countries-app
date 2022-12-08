@@ -50,4 +50,15 @@ const searchCountry = async (targetCountry, dataURL, render, mount)=>{
 }
 
 
+const searchByRegions = async (region, dataURL, render, mount) =>{
+    const response = await fetch(`${dataURL}/${region}`)
+    const data = await response.json()
+    data.forEach(item => {
+        
+        mount.innerHTML += render(item.flags.svg, item.name.common, item.population, item.continents, item.capital[0])
+
+    })
+}
+
+
 !state.search && fillCards(dataURL, cardGenerator, cards)
