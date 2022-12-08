@@ -18,9 +18,9 @@ class RenderDOM{
                 <span>Filter by Region:</span>
                 <select name="" id="" class="filter-region">
                 <option value="">All</option>
+                <option value="">Fuck</option>
                 <option value="">your</option>
-                <option value="">intentions</option>
-                <option value="">man</option>
+                <option value="">intensions</option>
                 </select>
             </div>
         </div>
