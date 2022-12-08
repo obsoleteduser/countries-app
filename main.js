@@ -9,7 +9,7 @@ const dataURL = 'https://restcountries.com/v3.1/all'
 
 searchBox.addEventListener('input', (event)=>{
     searchCountry(event.target.value, dataURL, cardGenerator, cards)
-    !event.target.value && fillCards(dataURL, cardGenerator, cards)
+    !event.target.value && (fillCards(dataURL, cardGenerator, cards))
 })
 
 const cardGenerator = (imageURL, title, population, region, capital) =>{
