@@ -1,19 +1,21 @@
 const header = document.querySelector('.header')
 const darkModeBtn = document.querySelector('.dark-mode')
-const searchBox  = document.querySelector('.search')
+const searchBox = document.querySelector('.search')
 const select = document.querySelector('.filter-region')
 const cards = document.querySelector('.cards')
+const miniCards = document.querySelector('.card')
 const dataURL = 'https://restcountries.com/v3.1/all'
 
 
 
-searchBox.addEventListener('input', (event)=>{
+searchBox.addEventListener('input', (event) => {
     searchCountry(event.target.value, dataURL, cardGenerator, cards)
     !event.target.value && (fillCards(dataURL, cardGenerator, cards))
 })
 
-const cardGenerator = (imageURL, title, population, region, capital) =>{
-    return(
+const cardGenerator = (imageURL, title, population, region, capital) => {
+    
+    return (
         `
         <div class="card">
         <img src="${imageURL}" alt="" class="country">
@@ -28,22 +30,63 @@ const cardGenerator = (imageURL, title, population, region, capital) =>{
     )
 }
 
-const fillCards = async (dataURL, render, mount)=>{
+// const getCard = async(dataURL, render, mount, target)=>{
+//     const response =  await fetch(dataURL)
+//     const data = await response.json()
+//     targetCard = data.filter(item => {
+//         return item.name.common = target
+//     })
+// }
+
+
+
+
+
+
+const fillCards = async (dataURL, render, mount) => {
 
     const response = await fetch(dataURL)
     const data = await response.json()
     data.forEach(item => {
-        
+
         mount.innerHTML += render(item.flags.svg, item.name.common, item.population, item.continents, item.capital[0])
+        
+        // document.querySelectorAll('.card').forEach(card=>{
+        //     card.addEventListener('click', (event)=>{
+        //      
+        //      console.log(keyValue)
+        //       document.getElementById('root').innerHTML+=new Card().render(item.flags.svg, item.name.common, item.population, item.continents, item.capital[0])
+        //     })
+        // })
+
+
+        document.querySelectorAll('.card').forEach(card=>{
+            card.addEventListener('click', (event)=>{
+                let keyValue = event.target.querySelector('.card-title').textContent
+                console.log(keyValue)
+                let thatCountry = data.filter(item => item.name.common === keyValue)[0]
+                
+                console.log(thatCountry)
+                console.log(document.getElementById('details'))
+                document.getElementById('details').innerHTML+=new Card().render(thatCountry.flags.svg, thatCountry.name.common, thatCountry.population, thatCountry.continents, thatCountry.capital[0])
+
+            })
+        })
+        
 
     })
-    
+
+   
+
+
 }
 
 
-const searchCountry = async (targetCountry, dataURL, render, mount)=>{
+const searchCountry = async (targetCountry, dataURL, render, mount) => {
     const response = await fetch(dataURL)
     const data = await response.json()
+    const fuckinTest = Object.values(data)
+    console.log(fuckinTest)
     const country = data.filter(item => item.name.common.toUpperCase() === targetCountry.toUpperCase()
     )
     console.log(country)
@@ -51,15 +94,17 @@ const searchCountry = async (targetCountry, dataURL, render, mount)=>{
 }
 
 
-const searchByRegions = async (region, dataURL, render, mount) =>{
+const searchByRegions = async (region, dataURL, render, mount) => {
     const response = await fetch(`${dataURL}/${region}`)
     const data = await response.json()
     data.forEach(item => {
-        
+
         mount.innerHTML += render(item.flags.svg, item.name.common, item.population, item.continents, item.capital[0])
 
     })
 }
+
+
 
 
 !state.search && fillCards(dataURL, cardGenerator, cards)

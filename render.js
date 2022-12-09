@@ -1,10 +1,10 @@
 const root = document.getElementById('root')
 
-class RenderDOM{
+class RenderDOM {
 
-    static render = (mount)=>{
-        mount.innerHTML = 
-        `
+    static render = (mount) => {
+        mount.innerHTML =
+            `
         <header class="header">
         <div class="title">Where in the world?</div>
         <div class="dark-mode">Dark Mode</div>
@@ -42,7 +42,7 @@ const state = {
     search: false
 }
 
-const setState = (callback)=>{
+const setState = (callback) => {
     callback()
     RenderDOM.render(root)
 }

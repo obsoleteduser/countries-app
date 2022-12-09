@@ -8,6 +8,10 @@
     padding: 0;
 }
 
+#root{
+    display: relative;
+}
+
 .header{
     display: flex;
     justify-content: space-between;
@@ -74,11 +78,13 @@ text-align: center;
 }
 
 .card{
+    background-color: white;
     width: 15rem;
     height: 20rem;
     display: flex;
     flex-direction: column;
     border: black 1px solid;
+    cursor: pointer;
 }
 
 .card-content{
@@ -89,3 +95,14 @@ text-align: center;
     height: 100%;
 }
 
+.card-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0, .5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
