@@ -52,7 +52,9 @@ const fillCards = async (dataURL, render, mount) => {
         mount.innerHTML += render(item.flags.svg, item.name.common, item.population, item.continents, item.capital[0])
 
         document.querySelectorAll('.card').forEach(card => {
+
             card.addEventListener('click', (event) => {
+               
                 let keyValue = event.target.querySelector('.card-title').textContent
                 console.log(keyValue)
                 let thatCountry = data.filter(item => item.name.common === keyValue)[0]

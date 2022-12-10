@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Details</title>
 </head>
+
 <body>
 
     <style>
-        body{
+        body {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
         }
-        img{
+
+        img {
             width: 300px;
             height: 250px;
         }
     </style>
 
+    <button onclick="back()">back</button>
 
     <h1 class="country"></h1>
     <img src="" alt="" class="flag">
@@ -32,17 +36,19 @@
 
 
     <script>
-    let data = JSON.parse(sessionStorage.getItem('card') )
-    console.log(data)
-    document.getElementsByClassName('country')[0].textContent = data.name.common
-    document.getElementsByClassName('flag')[0].src = data.flags.svg
-    document.getElementsByClassName('capital')[0].textContent = data.capital[0]
-    document.getElementsByClassName('population')[0].textContent = data.population
-    document.getElementsByClassName('continent')[0].textContent = data.continents[0]
-    document.getElementsByClassName('region')[0].textContent = data.region
+        let data = JSON.parse(sessionStorage.getItem('card'))
+        console.log(data)
+        document.getElementsByClassName('country')[0].textContent = data.name.common
+        document.getElementsByClassName('flag')[0].src = data.flags.svg
+        document.getElementsByClassName('capital')[0].textContent = data.capital[0]
+        document.getElementsByClassName('population')[0].textContent = data.population
+        document.getElementsByClassName('continent')[0].textContent = data.continents[0]
+        document.getElementsByClassName('region')[0].textContent = data.region
+        const back = () => { location.href = '/' }
     </script>
 
 
 
 </body>
+
 </html>

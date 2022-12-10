@@ -78,7 +78,7 @@ text-align: center;
 }
 
 .card{
-    background-color: white;
+    background-color: transparent;
     width: 15rem;
     height: 20rem;
     display: flex;
