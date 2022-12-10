@@ -5,6 +5,13 @@ const select = document.querySelector('.filter-region')
 const cards = document.querySelector('.cards')
 const miniCards = document.querySelector('.card')
 const dataURL = 'https://restcountries.com/v3.1/all'
+const selector  = document.querySelector('select')
+
+selector.addEventListener('change', (event)=>{
+
+    
+})
+
 
 
 
@@ -65,7 +72,7 @@ const fillCards = async (dataURL, render, mount) => {
                 let keyValue = event.target.querySelector('.card-title').textContent
                 console.log(keyValue)
                 let thatCountry = data.filter(item => item.name.common === keyValue)[0]
-                
+            
                 console.log(thatCountry)
                 console.log(document.getElementById('details'))
                 document.getElementById('details').innerHTML+=new Card().render(thatCountry.flags.svg, thatCountry.name.common, thatCountry.population, thatCountry.continents, thatCountry.capital[0])
@@ -87,7 +94,7 @@ const searchCountry = async (targetCountry, dataURL, render, mount) => {
     const data = await response.json()
     const fuckinTest = Object.values(data)
     console.log(fuckinTest)
-    const country = data.filter(item => item.name.common.toUpperCase() === targetCountry.toUpperCase()
+    const country = data.filter(item => item.name.common.toUpperCase() === targetCountry.toUpperCase() && item.continents[0].toUpperCase() === selector.value.toUpperCase()
     )
     console.log(country)
     mount.innerHTML = render(country[0].flags.svg, country[0].name.common, country[0].population, country[0].continents, country[0].capital[0])
