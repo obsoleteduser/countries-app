@@ -95,9 +95,9 @@ const fillCards = async (dataURL, render, mount) => {
 const searchCountry = async (targetCountry, dataURL, render, mount) => {
     const response = await fetch(dataURL)
     const data = await response.json()
-    const fuckinTest = Object.values(data)
-    console.log(fuckinTest)
-    const country = data.filter(item => item.name.common.toUpperCase() === targetCountry.toUpperCase() && item.continents[0].toUpperCase() === selector.value.toUpperCase()
+    const country = data.filter(item =>{
+         
+        return item.name.common.toUpperCase() === targetCountry.toUpperCase() && item.continents[0].toUpperCase() === selector.value.toUpperCase()}
     )
     console.log(country)
     mount.innerHTML = render(country[0].flags.svg, country[0].name.common, country[0].population, country[0].continents, country[0].capital[0])

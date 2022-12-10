@@ -17,6 +17,7 @@ class RenderDOM {
             <div style="display: inline-flex; justify-content: center; align-items: center;" class="filter-by-region">
                 <span>Filter by Region:</span>
                 <select name="" id="" class="filter-region">
+                <option value="All">All</option>
                 <option value="africa">Africa</option>
                 <option value="america">America</option>
                 <option value="asia">Asia</option>
