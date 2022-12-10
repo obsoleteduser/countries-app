@@ -8,7 +8,10 @@ const dataURL = 'https://restcountries.com/v3.1/all'
 const selector  = document.querySelector('select')
 
 selector.addEventListener('change', (event)=>{
-
+    addEventListener('input', (event) => {
+        searchCountry(searchBox.value, dataURL, cardGenerator, cards)
+        !event.target.value && (fillCards(dataURL, cardGenerator, cards))
+    })
     
 })
 
