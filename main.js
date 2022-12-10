@@ -7,11 +7,10 @@ const miniCards = document.querySelector('.card')
 const dataURL = 'https://restcountries.com/v3.1/all'
 const selector  = document.querySelector('select')
 
-selector.addEventListener('change', (event)=>{
-    addEventListener('input', (event) => {
-        searchCountry(searchBox.value, dataURL, cardGenerator, cards)
-        !event.target.value && (fillCards(dataURL, cardGenerator, cards))
-    })
+selector.addEventListener('change', ()=>{
+   
+    searchCountry(searchBox .value, dataURL, cardGenerator, cards)
+    !searchBox.value && (fillCards(dataURL, cardGenerator, cards))
     
 })
 
@@ -95,10 +94,11 @@ const fillCards = async (dataURL, render, mount) => {
 const searchCountry = async (targetCountry, dataURL, render, mount) => {
     const response = await fetch(dataURL)
     const data = await response.json()
-    const country = data.filter(item =>{
-         
-        return item.name.common.toUpperCase() === targetCountry.toUpperCase() && item.continents[0].toUpperCase() === selector.value.toUpperCase()}
-    )
+    const country = data.filter(item => {
+        // if(selector.value==='all') selector.value = true
+        console.log(selector.value)
+       return item.name.common.toUpperCase() === targetCountry.toUpperCase() && selector.value === "all" ? true : item.continents[0].toUpperCase() === selector.value
+})
     console.log(country)
     mount.innerHTML = render(country[0].flags.svg, country[0].name.common, country[0].population, country[0].continents, country[0].capital[0])
 }
